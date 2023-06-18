@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>PhotoPix </title>
+</head>
+<body>
+<div class="container ">
+    <nav class="nav justify-content-center">
+      <a class="nav-link" href="/signup">Sign Up</a>
+      <a class="nav-link" href="login">Login</a>
+      <a class="nav-link" href="/logout">Logout</a>
+    </nav>
+    <div class="py-5 text-center bg-secondary text-white">
+        <h1 class="mb-3">Upload Image</h1>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{fm}}
+                    <input type="submit" value="Submit" class="btn btn-success">
+                </form>
+    </div>
+    <div class="row">
+        {% for x in  img %}
+        <div class="col-sm-4">
+            <div class="card m-2">
+                <img src="{{x.photo.url}}" alt="" class="card-img-top" width="100" height="200" >
+            </div>
+            <div class="card-footer ">
+             
+                <small class="text-muted">{{x.date}}</small>
+               
+                    
+                <a href="{% url 'delete' id=x.id %}" class="mx-3 btn btn-danger">Delete</a>
+       
+                    
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
